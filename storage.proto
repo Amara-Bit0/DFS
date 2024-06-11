@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+service Storage {
+    rpc StoreChunk (StoreRequest) returns (StoreResponse);
+    rpc RetrieveChunk (RetrieveRequest) returns (RetrieveResponse);
+}
+
+message StoreRequest {
+    string chunk_id = 1;
+    bytes chunk_data = 2;
+}
+
+message StoreResponse {
+    string status = 1;
+}
+
+message RetrieveRequest {
+    string chunk_id = 1;
+}
+
+message RetrieveResponse {
+    bytes chunk_data = 1;
+}

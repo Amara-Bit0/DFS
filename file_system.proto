@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service FileSystem {
+    rpc UploadFile (UploadRequest) returns (UploadResponse);
+    rpc DownloadFile (DownloadRequest) returns (DownloadResponse);
+}
+
+message UploadRequest {
+    string file_name = 1;
+    bytes file_data = 2;
+}
+
+message UploadResponse {
+    repeated string chunk_ids = 1;
+}
+
+message DownloadRequest {
+    repeated string chunk_ids = 1;
+}
+
+message DownloadResponse {
+    repeated ChunkLocation locations = 1;
+}
+
+message ChunkLocation {
+    string chunk_id = 1;
+    repeated string storage_nodes = 2;
+}
